@@ -4,17 +4,17 @@ pipeline {
     stages {
         stage('Check version') {
             steps {
-               bat 'mvn -version'
+               sh 'mvn -version'
             }
         }
         stage('Build') {
             steps {
-               bat 'mvn compile'
+               sh 'mvn compile'
             }
         }
         stage('Test') {
             steps {
-               bat 'mvn test'
+               sh 'mvn test'
             }
         }
     }
