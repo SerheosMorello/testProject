@@ -4,17 +4,17 @@ pipeline {
     stages {
         stage('Check version') {
             steps {
-                "mvn -version"
+               sh 'mvn -version'
             }
         }
         stage('Build') {
             steps {
-                "mvn compile"
+               sh 'mvn compile'
             }
         }
         stage('Test') {
             steps {
-                "mvn test"
+               sh 'mvn test'
             }
         }
     }
