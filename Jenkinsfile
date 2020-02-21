@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     stages {
-        stage('Check version') {
+        stage('Git clone') {
             steps {
-               sh 'mvn -version'
+               sh 'git clone https://github.com/SerheosMorello/testProject.git'
             }
         }
         stage('Build') {
