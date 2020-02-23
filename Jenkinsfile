@@ -17,14 +17,14 @@ pipeline {
 
 				stage('Test chrome') {
 					steps {
-						sh 'mvn test -Dtest=CIMSmokeTest -Dselenide.browser=chrome'
+						sh 'mvn test -Dselenide.browser=chrome'
 						junit "**/*.xml"
 					}
 
 				}
 				stage('Test firefox') {
 					steps {
-						 sh 'mvn test -Dtest=CIMSmokeTest -Dselenide.browser=firefox'
+						 sh 'mvn test -Dselenide.browser=firefox'
 						 junit "**/*.xml"
 					}
 				}
