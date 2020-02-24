@@ -1,6 +1,9 @@
+import net.serenitybdd.junit.runners.SerenityRunner;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
+@RunWith(SerenityRunner.class)
 public class UserTest {
     @Test
     public void TestNameTom(){
