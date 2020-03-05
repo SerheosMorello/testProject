@@ -5,12 +5,11 @@ import cmd.StartPasge;
 import net.thucydides.core.annotations.WithTag;
 import org.junit.*;
 
-public class ACMSmokeTest extends BaseTest{
-
+public class ENTSmokeTest extends BaseTest {
     @BeforeClass
     public static void openModule(){
         new StartPasge().
-                openModule("cbase", "Accessory Management");
+                openModule("cbase", "Entity Manager");
     }
 
     @AfterClass
@@ -20,185 +19,131 @@ public class ACMSmokeTest extends BaseTest{
 
     @Test
     @WithTag("suite: smoke")
-    public void OpenContract(){
+    public void openInbox(){
         new CommonModule().
-                selectNode("Contract").
-                checkSearchRestriction("Search restriction - Contract").
+                selectNode("Entity").
+                checkSearchRestriction("Search restriction - Entity").
                 checkCommonModuleElementsIsDisplayed().
                 performSearch().
                 openFirestRow().
                 checkObjectElementsIsDisplayed().
                 clickCloseButton();
-
-    }
-
-
-    @Test
-    @WithTag("suite: smoke")
-    public void OpenFrameworkContract(){
-        new CommonModule().
-                selectNode("Framework contract").
-                checkSearchRestriction("Search restriction - Framework contract").
-                checkCommonModuleElementsIsDisplayed().
-                performSearch().
-                openFirestRow().
-                checkObjectElementsIsDisplayed().
-                clickCloseButton();
-
     }
 
     @Test
     @WithTag("suite: smoke")
-    public void OpenMaintenanceContract(){
+    public void openEntityGroup(){
         new CommonModule().
-                selectNode("Maintenance contract").
-                checkSearchRestriction("Search restriction - Maintenance contract").
+                selectNode("Entity Group").
+                checkSearchRestriction("Search restriction - Entity Group").
                 checkCommonModuleElementsIsDisplayed().
                 performSearch().
                 openFirestRow().
                 checkObjectElementsIsDisplayed().
                 clickCloseButton();
-
     }
 
     @Test
     @WithTag("suite: smoke")
-    public void OpenOrganization(){
+    public void openRelationEntity(){
         new CommonModule().
-                selectNode("Organization").
-                checkSearchRestriction("Search restriction - Organization").
+                selectNode("Relation Entity").
+                checkSearchRestriction("Search restriction - Relation Entity").
                 checkCommonModuleElementsIsDisplayed().
                 performSearch().
                 openFirestRow().
                 checkObjectElementsIsDisplayed().
                 clickCloseButton();
-
     }
 
     @Test
     @WithTag("suite: smoke")
-    public void OpenPerson(){
+    public void openAttribute(){
         new CommonModule().
-                selectNode("Person").
-                checkSearchRestriction("Search restriction - Person").
+                selectNode("Attribute").
+                checkSearchRestriction("Search restriction - Attribute").
                 checkCommonModuleElementsIsDisplayed().
                 performSearch().
                 openFirestRow().
                 checkObjectElementsIsDisplayed().
                 clickCloseButton();
-
     }
 
     @Test
     @WithTag("suite: smoke")
-    public void OpenPersonGroup(){
+    public void openDataSource(){
         new CommonModule().
-                selectNode("Person group").
-                checkSearchRestriction("Search restriction - Person group").
+                selectNode("Data source").
+                checkSearchRestriction("Search restriction - Data source").
                 checkCommonModuleElementsIsDisplayed().
                 performSearch().
                 openFirestRow().
                 checkObjectElementsIsDisplayed().
                 clickCloseButton();
-
     }
 
     @Test
     @WithTag("suite: smoke")
-    public void OpenAssemblyPart(){
+    public void openBusinessGatewayEntity(){
         new CommonModule().
-                selectNode("Assembly part").
-                checkSearchRestriction("Search restriction - Assembly part").
+                selectNode("Business Gateway Entity").
+                checkSearchRestriction("Search restriction - Business Gateway Entity").
                 checkCommonModuleElementsIsDisplayed().
                 performSearch().
                 openFirestRow().
                 checkObjectElementsIsDisplayed().
                 clickCloseButton();
-
     }
 
     @Test
     @WithTag("suite: smoke")
-    public void OpenAssemblyPartMaster(){
+    public void openConfiguration(){
         new CommonModule().
-                selectNode("Assembly part master").
-                checkSearchRestriction("Search restriction - Assembly part master").
+                selectNodeByGroup("Configuration", new String[]{"Configuration data"}).
+                checkSearchRestriction("Search restriction - Configuration").
                 checkCommonModuleElementsIsDisplayed().
                 performSearch().
                 openFirestRow().
                 checkObjectElementsIsDisplayed().
                 clickCloseButton();
-
     }
 
     @Test
     @WithTag("suite: smoke")
-    public void OpenMaintenanceWindow(){
+    public void openDataLayer(){
         new CommonModule().
-                selectNode("Maintenance window").
-                checkSearchRestriction("Search restriction - Maintenance window").
+                selectNodeByGroup("Data layer", new String[]{"Configuration data"}).
+                checkSearchRestriction("Search restriction - Data layer").
                 checkCommonModuleElementsIsDisplayed().
                 performSearch().
                 openFirestRow().
                 checkObjectElementsIsDisplayed().
                 clickCloseButton();
-
     }
 
     @Test
     @WithTag("suite: smoke")
-    public void OpenQualityOfService(){
+    public void openAttributeSet(){
         new CommonModule().
-                selectNode("Quality of Service").
-                checkSearchRestriction("Search restriction - Quality of Service").
+                selectNodeByGroup("Attribute set", new String[]{"Configuration data"}).
+                checkSearchRestriction("Search restriction - Attribute set").
                 checkCommonModuleElementsIsDisplayed().
                 performSearch().
                 openFirestRow().
                 checkObjectElementsIsDisplayed().
                 clickCloseButton();
-
     }
 
     @Test
     @WithTag("suite: smoke")
-    public void OpenTrafficEngineeringRule(){
+    public void openAttributeLink(){
         new CommonModule().
-                selectNode("Traffic Engineering Rule").
-                checkSearchRestriction("Search restriction - Traffic Engineering Rule").
+                selectNodeByGroup("Attribute link", new String[]{"Configuration data"}).
+                checkSearchRestriction("Search restriction - Attribute link").
                 checkCommonModuleElementsIsDisplayed().
                 performSearch().
                 openFirestRow().
                 checkObjectElementsIsDisplayed().
                 clickCloseButton();
-
     }
-
-    @Test
-    @WithTag("suite: smoke")
-    public void OpenServiceLevelAgreement(){
-        new CommonModule().
-                selectNode("Service Level Agreement").
-                checkSearchRestriction("Search restriction - Service Level Agreement").
-                checkCommonModuleElementsIsDisplayed().
-                performSearch().
-                openFirestRow().
-                checkObjectElementsIsDisplayed().
-                clickCloseButton();
-
-    }
-
-    @Test
-    @WithTag("suite: smoke")
-    public void OpenKey(){
-        new CommonModule().
-                selectNode("Key").
-                checkSearchRestriction("Search restriction - Key").
-                checkCommonModuleElementsIsDisplayed().
-                performSearch().
-                openFirestRow().
-                checkObjectElementsIsDisplayed().
-                clickCloseButton();
-
-    }
-
 }

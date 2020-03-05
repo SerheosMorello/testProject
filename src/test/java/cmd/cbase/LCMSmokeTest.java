@@ -1,36 +1,28 @@
 package cmd.cbase;
 
 import cmd.*;
-import cmd.hendlers.Tree;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import net.thucydides.core.annotations.WithTag;
+import org.junit.*;
 
-import static com.codeborne.selenide.Selenide.open;
-
-public class LCMSmokeTest {
+public class LCMSmokeTest extends BaseTest {
 
     @BeforeClass
-    public static void login(){
-        open(instance.CMD.toString());
-        new Login().login("command","command").
-                selectMandant("FNT [1001]", "Administrator [Group]").
-                closeNote();
+    public static void openModule(){
         new StartPasge().
                 openModule("cbase", "Lifecycle Management");
     }
 
     @AfterClass
-    public static void logout(){
+    public static void closeModule(){
         new CommonModule().closeModuleTab();
-        new StartPasge().logout();
     }
 
     @After
     public void returnToSearchTab(){
+        if (new CommonModule().isPresentNote()){
+            new CommonModule().closeNote();
+        }
         if(! new CommonModule().isActiveSearchTab()){
-            new StartPasge().closeNote();
             new ObjectTab().closeActiveTab();
             new CommonModule().returnToSearchTab();
         }
@@ -60,6 +52,7 @@ public class LCMSmokeTest {
     }
 
     @Test
+    @WithTag("suite: smoke")
     public void OpenChange(){
         new CommonModule().
                 selectNodeByGroup("Change", new String[]{"Main navigation LCM","Logbook","Event"}).
@@ -74,16 +67,12 @@ public class LCMSmokeTest {
                 checkButtonIsDisplayedById("reset").
                 performSearch().
                 openFirestRow().
-                checkMainMenuPanelIsDisplayed().
-                checkIconPanelIsDisplayed().
-                checkTreeElementIsDisplayed().
-                checkDetailElementIsDisplayed().
-                checkButtonIsDisplayedById("show_details").
-                closeActiveTab().
-                returnToSearchTab();
+                checkObjectElementsIsDisplayed().
+                closeActiveTab();
     }
 
     @Test
+    @WithTag("suite: smoke")
     public void OpenIncident(){
         new CommonModule().
                 selectNodeByGroup("Incident", new String[]{"Main navigation LCM","Logbook","Event"}).
@@ -98,15 +87,12 @@ public class LCMSmokeTest {
                 checkButtonIsDisplayedById("reset").
                 performSearch().
                 openFirestRow().
-                checkMainMenuPanelIsDisplayed().
-                checkIconPanelIsDisplayed().
-                checkTreeElementIsDisplayed().
-                checkDetailElementIsDisplayed().
-                checkButtonIsDisplayedById("show_details").
+                checkObjectElementsIsDisplayed().
                 closeActiveTab();
     }
 
     @Test
+    @WithTag("suite: smoke")
     public void OpenActivity(){
         new CommonModule().
                 selectNodeByGroup("Activity", new String[]{"Main navigation LCM","Logbook","Event"}).
@@ -121,15 +107,12 @@ public class LCMSmokeTest {
                 checkButtonIsDisplayedById("reset").
                 performSearch().
                 openFirestRow().
-                checkMainMenuPanelIsDisplayed().
-                checkIconPanelIsDisplayed().
-                checkTreeElementIsDisplayed().
-                checkDetailElementIsDisplayed().
-                checkButtonIsDisplayedById("show_details").
+                checkObjectElementsIsDisplayed().
                 closeActiveTab();
     }
 
     @Test
+    @WithTag("suite: smoke")
     public void OpenCategories(){
         new CommonModule().
                 selectNode("Categories").
@@ -149,6 +132,7 @@ public class LCMSmokeTest {
     }
 
     @Test
+    @WithTag("suite: smoke")
     public void OpenCIEventSearch(){
         new CommonModule().
                 selectNodeByGroupNumber("CI-Event search", new String[]{"Reports"},"1").
@@ -172,6 +156,7 @@ public class LCMSmokeTest {
     }
 
     @Test
+    @WithTag("suite: smoke")
     public void OpenCIChangeSearch(){
         new CommonModule().
                 selectNodeByGroupNumber("CI-Change search", new String[]{"Reports"},"1").
@@ -195,6 +180,7 @@ public class LCMSmokeTest {
     }
 
     @Test
+    @WithTag("suite: smoke")
     public void OpenCIIncidentSearch(){
         new CommonModule().
                 selectNodeByGroupNumber("CI-Incident search", new String[]{"Reports"},"1").
@@ -218,6 +204,8 @@ public class LCMSmokeTest {
     }
 
     @Test
+    @Ignore
+    @WithTag("suite: smoke")
     public void OpenCIActivitySearch(){
         new CommonModule().
                 selectNodeByGroupNumber("CI-Activity search", new String[]{"Reports"},"1").
@@ -241,6 +229,8 @@ public class LCMSmokeTest {
     }
 
     @Test
+    @Ignore
+    @WithTag("suite: smoke")
     public void OpenHistoryAttributes(){
         new CommonModule().
                 selectNodeByGroup("Attributes", new String[]{"History", "History"}).
@@ -254,7 +244,7 @@ public class LCMSmokeTest {
                 checkButtonIsDisplayedById("export").
                 checkButtonIsDisplayedById("reset").
                 performSearch();
-                new StartPasge().closeNote();
+                new CommonModule().closeNote();
                 new CommonModule().
                 openFirestRow().
                 checkMainMenuPanelIsDisplayed().
@@ -266,34 +256,37 @@ public class LCMSmokeTest {
     }
 
     @Test
+    @WithTag("suite: smoke")
     public void OpenHistoryLocations(){
         new CommonModule().
                 selectNodeByGroup("Locations", new String[]{"History", "History"}).
                 checkSearchRestriction("Search restriction - History - Locations").
                 checkMainMenuPanelIsDisplayed().
                 checkIconPanelIsDisplayed().
-                checkTreeElementIsDisplayed().
-                checkRestrictionsFormIsDisplayed().
                 checkTableElementIsDispayed().
+                checkRestrictionsFormIsDisplayed().
+                checkTreeElementIsDisplayed().
                 checkButtonIsDisplayedById("search").
                 checkButtonIsDisplayedById("export").
                 checkButtonIsDisplayedById("reset").
+                checkButtonIsDisplayedById("erase").
                 performSearch();
-        new StartPasge().closeNote();
+        new CommonModule().closeNote();
         new CommonModule().
                 openFirestRow().
+                checkMainMenuPanelIsDisplayed().
                 checkMainMenuPanelIsDisplayed().
                 checkIconPanelIsDisplayed().
                 checkTreeElementIsDisplayed().
                 checkDetailElementIsDisplayed().
-                checkButtonIsDisplayedById("show_details").
                 closeActiveTab();
     }
 
     @Test
+    @WithTag("suite: smoke")
     public void OpenHistoryLinks(){
         new CommonModule().
-                selectNodeByGroup("Links", new String[]{"History", "History"}).
+                selectNodeNumberByGroup("Links", new String[]{"History", "History"},"1").
                 checkSearchRestriction("Search restriction - History - Links").
                 checkMainMenuPanelIsDisplayed().
                 checkIconPanelIsDisplayed().
@@ -304,22 +297,22 @@ public class LCMSmokeTest {
                 checkButtonIsDisplayedById("export").
                 checkButtonIsDisplayedById("reset").
                 performSearch();
-        new StartPasge().closeNote();
+        new CommonModule().closeNote();
         new CommonModule().
                 openFirestRow().
                 checkMainMenuPanelIsDisplayed().
                 checkIconPanelIsDisplayed().
                 checkTreeElementIsDisplayed().
                 checkDetailElementIsDisplayed().
-                checkButtonIsDisplayedById("show_details").
                 closeActiveTab();
     }
 
     @Test
+    @WithTag("suite: smoke")
     public void OpenHistoryAdministrationAttributes(){
         new CommonModule().
                 selectNodeByGroup("Attributes", new String[]{"History", "History administration"}).
-                checkSearchRestriction("Search restriction - Reports").
+                checkSearchRestriction("Search restriction - Admin Attribute-History").
                 checkMainMenuPanelIsDisplayed().
                 checkIconPanelIsDisplayed().
                 checkTreeElementIsDisplayed().
@@ -330,19 +323,16 @@ public class LCMSmokeTest {
                 checkButtonIsDisplayedById("reset").
                 performSearch().
                 openFirestRow().
-                checkMainMenuPanelIsDisplayed().
-                checkIconPanelIsDisplayed().
-                checkTreeElementIsDisplayed().
-                checkDetailElementIsDisplayed().
-                checkButtonIsDisplayedById("show_details").
+                checkObjectElementsIsDisplayed().
                 closeActiveTab();
     }
 
     @Test
+    @WithTag("suite: smoke")
     public void OpenHistoryAdministrationLinks(){
         new CommonModule().
-                selectNodeByGroup("Links", new String[]{"History", "History administration"}).
-                checkSearchRestriction("Search restriction - Reports").
+                selectNodeNumberByGroup("Links", new String[]{"History", "History administration"},"2").
+                checkSearchRestriction("Search restriction - Admin Link-History").
                 checkMainMenuPanelIsDisplayed().
                 checkIconPanelIsDisplayed().
                 checkTreeElementIsDisplayed().
@@ -357,11 +347,11 @@ public class LCMSmokeTest {
                 checkIconPanelIsDisplayed().
                 checkTreeElementIsDisplayed().
                 checkDetailElementIsDisplayed().
-                checkButtonIsDisplayedById("show_details").
                 closeActiveTab();
     }
 
     @Test
+    @WithTag("suite: smoke")
     public void OpenScrapFromWarehouse(){
         new CommonModule().
                 selectNodeByGroup("Scrap from warehouse", new String[]{"History", "Reports"}).
@@ -374,18 +364,12 @@ public class LCMSmokeTest {
                 checkButtonIsDisplayedById("search").
                 checkButtonIsDisplayedById("export").
                 checkButtonIsDisplayedById("reset").
-                performSearch().
-                openFirestRow().
-                checkMainMenuPanelIsDisplayed().
-                checkIconPanelIsDisplayed().
-                checkTreeElementIsDisplayed().
-                checkDetailElementIsDisplayed().
-                checkButtonIsDisplayedById("show_details").
-                closeActiveTab();
+                performSearch();
     }
 
     @Test
-    public void OpenTakeStockInWarehouse(){
+    @WithTag("suite: smoke")
+    public void OpenTakeStockInWarehouse() {
         new CommonModule().
                 selectNodeByGroup("Take stock in warehouse", new String[]{"History", "Reports"}).
                 checkSearchRestriction("Search restriction - Reports").
@@ -397,17 +381,11 @@ public class LCMSmokeTest {
                 checkButtonIsDisplayedById("search").
                 checkButtonIsDisplayedById("export").
                 checkButtonIsDisplayedById("reset").
-                performSearch().
-                openFirestRow().
-                checkMainMenuPanelIsDisplayed().
-                checkIconPanelIsDisplayed().
-                checkTreeElementIsDisplayed().
-                checkDetailElementIsDisplayed().
-                checkButtonIsDisplayedById("show_details").
-                closeActiveTab();
+                performSearch();
     }
 
     @Test
+    @WithTag("suite: smoke")
     public void OpenCluster(){
         new CommonModule().
                 selectNode("Cluster").
@@ -421,14 +399,10 @@ public class LCMSmokeTest {
                 checkButtonIsDisplayedById("export").
                 checkButtonIsDisplayedById("reset").
                 performSearch();
-        new StartPasge().closeNote();
+        new CommonModule().closeNote();
         new CommonModule().
                 openFirestRow().
-                checkMainMenuPanelIsDisplayed().
-                checkIconPanelIsDisplayed().
-                checkTreeElementIsDisplayed().
-                checkDetailElementIsDisplayed().
-                checkButtonIsDisplayedById("show_details").
+                checkObjectElementsIsDisplayed().
                 closeActiveTab();
     }
 }

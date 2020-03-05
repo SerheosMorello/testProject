@@ -67,4 +67,12 @@ public class ObjectTab {
         return this;
     }
 
+    public ObjectTab checkNavigatorElementsIsDisplayed(){
+        checkMainMenuPanelIsDisplayed();
+        checkIconPanelIsDisplayed();
+        checkTreeElementIsDisplayed();
+        checkDetailElementIsDisplayed();
+        return this;
+    }
+
 }

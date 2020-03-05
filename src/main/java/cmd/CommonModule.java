@@ -3,8 +3,8 @@ package cmd;
 import cmd.hendlers.Tree;
 import cmd.utils.PageWaiter;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
 import org.junit.Assert;
-import org.omg.CORBA.PUBLIC_MEMBER;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -12,21 +12,48 @@ import static com.codeborne.selenide.Selenide.$;
 public class CommonModule {
 
     public CommonModule selectNode(String nodeName){ ;
-        new Tree().selectTreeByName(nodeName);
+        new Tree().selectTreeByName(nodeName, "");
         new PageWaiter().waitForAngularRequestsToFinish();
         return this;
     }
 
     public CommonModule selectNodeByGroup(String node, String[] group){
-        new Tree().selectNodeByGroupe(node, group);
+        new Tree().selectNodeByGroup(node, group);
         new PageWaiter().waitForAngularRequestsToFinish();
         return  this;
     }
 
-    public CommonModule selectNodeByGroupNumber(String node, String[] group, String number){
-        new Tree().selectNodeByGroupeNumber(node, group, number);
+    public CommonModule selectNodeByGroupNumber(String node, String[] group, String groupNumber){
+        new Tree().selectNodeByGroupNumber(node, group, groupNumber);
         new PageWaiter().waitForAngularRequestsToFinish();
         return  this;
+    }
+
+    public CommonModule selectNodeNumberByGroup(String node, String[] group, String nodeNumber){
+        new Tree().selectNodeNumberByGroup(node, group, nodeNumber);
+        new PageWaiter().waitForAngularRequestsToFinish();
+        return  this;
+    }
+
+    public CommonModule selectNodeNumberByGroupNumber(String node, String[] group, String NodeNumber, String groupNumber){
+        new Tree().selectNodeNumberByGroupNumber(node, group, NodeNumber, groupNumber);
+        new PageWaiter().waitForAngularRequestsToFinish();
+        return  this;
+    }
+
+    public CommonModule closeNote(){
+        SelenideElement dialog = $(By.xpath(".//div[contains(@class, 'window')]"));
+        while (dialog.isDisplayed()){
+            dialog.$("#ok").click();
+        }
+        return this;
+    }
+
+    public boolean isPresentNote(){
+        if($(By.xpath(".//div[contains(@class, 'window')]")).isDisplayed()){
+            return true;
+        }
+        else return false;
     }
 
     public CommonModule performSearch() {

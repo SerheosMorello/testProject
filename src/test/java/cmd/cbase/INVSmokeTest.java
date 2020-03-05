@@ -5,12 +5,12 @@ import cmd.StartPasge;
 import net.thucydides.core.annotations.WithTag;
 import org.junit.*;
 
-public class CIMSmokeTest extends BaseTest {
+public class INVSmokeTest extends BaseTest{
 
     @BeforeClass
     public static void openModule(){
         new StartPasge().
-                openModule("cbase", "CI Management");
+                openModule("cbase", "Network Inventory");
     }
 
     @AfterClass
@@ -20,30 +20,27 @@ public class CIMSmokeTest extends BaseTest {
 
     @Test
     @WithTag("suite: smoke")
-    public void OpenGraphic(){
-        new CommonModule().
-                selectNode("Graphic").
-                checkSearchRestriction("Search restriction - Graphic").
+    public void openVirtualSwitch(){
+        new CommonModule().returnToSearchTab().
+                selectNode("Virtual switch").
+                checkSearchRestriction("Search restriction - Virtual switch").
                 checkCommonModuleElementsIsDisplayed().
                 performSearch().
                 openFirestRow().
                 checkObjectElementsIsDisplayed().
                 clickCloseButton();
-
     }
 
     @Test
     @WithTag("suite: smoke")
-    public void OpenGraphicTemplate(){
-        new CommonModule().
-                selectNode("Graphic template").
-                checkSearchRestriction("Search restriction - Template").
+    public void openLogicalGroup(){
+        new CommonModule().returnToSearchTab().
+                selectNode("Logical group").
+                checkSearchRestriction("Search restriction - VSS").
                 checkCommonModuleElementsIsDisplayed().
                 performSearch().
                 openFirestRow().
                 checkObjectElementsIsDisplayed().
                 clickCloseButton();
-
     }
-
 }

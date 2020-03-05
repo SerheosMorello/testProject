@@ -6,19 +6,11 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class StartPasge {
 
-    public StartPasge closeNote(){
-        while ($(By.xpath(".//div[contains(@class, 'window')]")).isDisplayed()){
-            $("#ok").click();
-        }
-        return this;
-    }
-
     public StartPasge easySearch(String text)  {
         $("#searchContainer > div.header > div.search-field > input").
                 setValue(text).
                 pressEnter();
         return this;
-
     }
 
     public CommonModule openModule(String group, String moduleName){

@@ -11,6 +11,7 @@ public class Login {
         $("#username").setValue(name);
         $("#password").setValue(password);
         $("#ok").click();
+        new PageWaiter().waitForAngularRequestsToFinish();
         return new Mandator();
     }
 }

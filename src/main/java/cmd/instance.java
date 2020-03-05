@@ -1,7 +1,7 @@
 package cmd;
 
 public enum instance {
-    CMD("http://sapp-dev-06.ell.fnt.de:1040/html");
+    CMD("http://sapp-dev-fe-01.ell.fnt.de/command/next");
 
     private String inst;
 
